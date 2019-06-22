@@ -14,15 +14,18 @@ class ComponentGrowth extends Component {
     CheckGrowth() {
         if(Date.now() >= this._data.StartDateTime + this._data.Duration) {
             this.CanGrow = true;
-
-            this.Promote();
         } else {
             this.CanGrow = false;
         }
     }
+    
+    IsGrowthEligible() {
+        return this._data.CanGrow;
+    }
+
     Promote() {
         console.warn("PROMOTED!");
-        
+
         this.AddStage();
         this._data.StartDateTime = Date.now();
         this._data.Duration = (this._data.Stage || 1) * 60 * 1000;

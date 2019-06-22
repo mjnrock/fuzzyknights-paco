@@ -36,6 +36,35 @@ class Component {
     OnTick(entity) {
         // NOOP
     }
+
+    Serialize() {
+        return JSON.stringify(this);
+    }
+    Deserialize(json) {
+        while(typeof json === "string" || json instanceof String) {
+            json = JSON.parse(json);
+        }
+
+        this._uuid = json._uuid;
+        this._type = json._type;
+        this._data = json._data;
+
+        return this;
+    }
+    
+    static Deserialize(json) {
+        while(typeof json === "string" || json instanceof String) {
+            json = JSON.parse(json);
+        }
+
+        let clazz = EnumComponent._getClass(json._type),
+            comp = new clazz();
+
+        comp._uuid = json._uuid;
+        comp._data = json._data;
+
+        return comp;
+    }
 }
 
 export default Component;

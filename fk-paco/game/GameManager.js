@@ -11,7 +11,7 @@ class GameManager extends Manager {
         return this;
     }
 
-    CreateGame({ fps } = {}) {
+    CreateGame({ fps = 1 } = {}) {
         this.GameLoop = new this.FKP.Game.GameLoop();
         this.GameLoop.Start(fps);
 

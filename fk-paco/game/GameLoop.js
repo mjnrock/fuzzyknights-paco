@@ -25,10 +25,8 @@ class GameLoop {
         this.TickRate = 1000 / this.FPS;
     }
     
-    Start(fps) {
-        if(fps !== null && fps !== void 0) {
-            this.SetFPS(fps);
-        }
+    Start(fps = 1) {
+        this.SetFPS(fps);
         this.CreateLoop();
 
         return this;

@@ -7,19 +7,25 @@ class ComponentHunger extends Component {
             Hunger: 0,
             MaxHunger: 100,
             Rate: 250
+        }, {
+            STARVE: 1 << 1,
+            WEAK: 1 << 2
         });
     }
 
     Check(entity) {
         let { Hunger, MaxHunger } = this._data;
 
-        if(Hunger === MaxHunger) {
-            //TODO: Add STATE.DEAD Flag
-        } else if(Hunger <= MaxHunger * 0.75) {
-            //TODO: Add STATE.WEAK Flag
+        if(Hunger >= MaxHunger) {
+            this.AddMask(this.GetFlag("STARVE"));
+        } else if(Hunger >= MaxHunger * 0.75) {
+            this.AddMask(this.GetFlag("WEAK"));
         } else {
-            //TODO: Remove STATE.WEAK Flag
+            this.RemoveMask(this.GetFlag("STARVE"));
+            this.RemoveMask(this.GetFlag("WEAK"));
         }
+
+        console.log(this.MaskToString());
     }
 
     GetHunger() {
@@ -36,19 +42,8 @@ class ComponentHunger extends Component {
 
     OnTick(entity) {
         this.Check(entity);
-        
-        let { Hunger, MaxHunger } = this._data;
-
-        console.log(`[Hunger]: ${ this.GetHunger() }`);
-
-        if(Hunger < MaxHunger) {
-            this.AddHunger(1);
-        } else if (Hunger === MaxHunger) {
-            console.warn("Resetting Hunger");
-            this.SetHunger(0);
-        } else {
-            console.info("MAX HUNGER", this.GetHunger());
-        }
+            
+        this.AddHunger(1);
     }
 }
 

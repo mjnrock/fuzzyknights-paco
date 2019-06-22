@@ -50,6 +50,8 @@ class Entity {
         for(let key in this._components) {
             let comp = this._components[ key ];
 
+            console.log(comp.GetMask());
+            
             comp.OnTick(this);
         }
     }

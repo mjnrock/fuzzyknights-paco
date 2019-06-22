@@ -7,15 +7,19 @@ class ComponentStage extends Component {
             Stage: 0,
             StartDateTime: Date.now(),
             Duration: 5 * 1000
+        }, {
+            PROMOTE: 1 << 1
         });
     }
 
     Check(entity) {
         if(Date.now() >= this._data.StartDateTime + this._data.Duration) {
-            return true;
+            this.AddMask(this.GetFlag("PROMOTE"));
+        } else {
+            this.RemoveMask(this.GetFlag("PROMOTE"));
         }
-        
-        return false;
+
+        console.log(this.MaskToString());
     }
 
     Promote() {

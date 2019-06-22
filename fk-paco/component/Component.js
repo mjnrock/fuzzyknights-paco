@@ -33,7 +33,7 @@ class Component {
         this._data = data;
     }
 
-    OnTick() {
+    OnTick(entity) {
         // NOOP
     }
 }

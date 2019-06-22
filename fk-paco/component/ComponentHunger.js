@@ -22,7 +22,7 @@ class ComponentHunger extends Component {
         return this.SetHunger(this.GetHunger() + inc);
     }
 
-    OnTick() {
+    OnTick(entity) {
         let { Hunger, MaxHunger } = this._data;
 
         console.log(`[Hunger]: ${ this.GetHunger() }`);

@@ -15,7 +15,7 @@ class Paco {
 
         this.FKP.Game.GameManager = new this.FKP.Game.GameManager(this.FKP);
         this.FKP.Game.GameManager.Init({
-            ...GameManager,
+            GameManager,
             managers: [
                 this.FKP.Entity.EntityManager
             ]

@@ -35,14 +35,6 @@ class GameLoop {
 
         return this;
     }
-
-    RegisterHook(fn) {
-        if(typeof fn === "function") {
-            this.Managers.push(fn);
-        }
-
-        return this;
-    }
     
     OnTick() {
         ++this.Options.Ticks;

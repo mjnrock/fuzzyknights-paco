@@ -50,7 +50,7 @@ class Entity {
         for(let key in this._components) {
             let comp = this._components[ key ];
 
-            comp.OnTick();
+            comp.OnTick(this);
         }
     }
 }

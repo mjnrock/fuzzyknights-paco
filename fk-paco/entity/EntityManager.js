@@ -11,7 +11,7 @@ class EntityManager extends Manager {
     Init({} = {}) {
         //  NOOP
         let ent = new Entity([
-            "GROWTH",
+            "STAGE",
             "HUNGER"
         ]);
         this.Register(ent);

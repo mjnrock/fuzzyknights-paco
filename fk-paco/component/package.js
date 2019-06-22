@@ -1,13 +1,13 @@
 import EnumComponent from "./EnumComponent.js";
 
 import Component from "./Component.js";
-import ComponentGrowth from "./ComponentGrowth.js";
+import ComponentStage from "./ComponentStage.js";
 import ComponentHunger from "./ComponentHunger.js";
 
 export default {
     EnumComponent,
 
     Component,
-    ComponentGrowth,
+    ComponentStage,
     ComponentHunger
 };

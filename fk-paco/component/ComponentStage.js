@@ -1,26 +1,21 @@
 import Component from "./Component.js";
 import EnumComponent from "./EnumComponent.js";
 
-class ComponentGrowth extends Component {
+class ComponentStage extends Component {
     constructor() {
-        super(EnumComponent.GROWTH, {
+        super(EnumComponent.STAGE, {
             Stage: 0,
             StartDateTime: Date.now(),
-            Duration: 5 * 1000,
-            CanGrow: false
+            Duration: 5 * 1000
         });
     }
 
-    CheckGrowth() {
+    CheckPromotion() {
         if(Date.now() >= this._data.StartDateTime + this._data.Duration) {
-            this.CanGrow = true;
-        } else {
-            this.CanGrow = false;
+            return true;
         }
-    }
-    
-    IsGrowthEligible() {
-        return this._data.CanGrow;
+        
+        return false;
     }
 
     Promote() {
@@ -29,7 +24,6 @@ class ComponentGrowth extends Component {
         this.AddStage();
         this._data.StartDateTime = Date.now();
         this._data.Duration = (this._data.Stage || 1) * 60 * 1000;
-        this._data.CanGrow = false;
 
         return this;
     }
@@ -47,8 +41,8 @@ class ComponentGrowth extends Component {
     }
 
     OnTick(entity) {
-        this.CheckGrowth();
+        this.CheckPromotion();
     }
 }
 
-export default ComponentGrowth;
+export default ComponentStage;

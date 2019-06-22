@@ -1,7 +1,7 @@
 import Component from "./package.js";
 
 const EnumComponent = {
-    GROWTH: 1 << 1,
+    STAGE: 1 << 1,
     HUNGER: 1 << 2
 };
 
@@ -21,8 +21,8 @@ EnumComponent._getClass = (key) => {
     key = key.toUpperCase();
 
     switch(key) {
-        case "GROWTH":
-            return Component.ComponentGrowth;
+        case "STAGE":
+            return Component.ComponentStage;
         case "HUNGER":
             return Component.ComponentHunger;
         default:

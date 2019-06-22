@@ -19,7 +19,7 @@ class ComponentStage extends Component {
             this.RemoveMask(this.GetFlag("PROMOTE"));
         }
 
-        console.log(this.MaskToString());
+        // console.log(this.MaskToString());
     }
 
     Promote() {

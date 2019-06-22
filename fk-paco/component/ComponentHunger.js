@@ -6,7 +6,8 @@ class ComponentHunger extends Component {
         super(EnumComponent.HUNGER, {
             Hunger: 0,
             MaxHunger: 100,
-            Rate: 250
+            LastUpdate: Date.now(),
+            Duration: 250
         }, {
             STARVE: 1 << 1,
             WEAK: 1 << 2
@@ -25,14 +26,14 @@ class ComponentHunger extends Component {
             this.RemoveMask(this.GetFlag("WEAK"));
         }
 
-        console.log(this.MaskToString());
+        // console.log(this.MaskToString());
     }
 
     GetHunger() {
         return this._data.Hunger;
     }
-    SetHunger(stage) {
-        this._data.Hunger = stage;
+    SetHunger(hunger) {
+        this._data.Hunger = Math.min(hunger, this._data.MaxHunger);
 
         return this;
     }
@@ -42,8 +43,16 @@ class ComponentHunger extends Component {
 
     OnTick(entity) {
         this.Check(entity);
-            
-        this.AddHunger(1);
+         
+        if(Date.now() >= this._data.LastUpdate + this._data.Duration) {
+            let diff = Date.now() - this._data.LastUpdate,
+                inc = diff / this._data.Duration;
+                
+            this.AddHunger(inc);
+            this._data.LastUpdate = Date.now();
+        }
+
+        console.log(`[Hunger]: ${ this.GetHunger() }`);
     }
 }
 

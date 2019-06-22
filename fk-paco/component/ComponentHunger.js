@@ -10,6 +10,18 @@ class ComponentHunger extends Component {
         });
     }
 
+    Check(entity) {
+        let { Hunger, MaxHunger } = this._data;
+
+        if(Hunger === MaxHunger) {
+            //TODO: Add STATE.DEAD Flag
+        } else if(Hunger <= MaxHunger * 0.75) {
+            //TODO: Add STATE.WEAK Flag
+        } else {
+            //TODO: Remove STATE.WEAK Flag
+        }
+    }
+
     GetHunger() {
         return this._data.Hunger;
     }
@@ -23,6 +35,8 @@ class ComponentHunger extends Component {
     }
 
     OnTick(entity) {
+        this.Check(entity);
+        
         let { Hunger, MaxHunger } = this._data;
 
         console.log(`[Hunger]: ${ this.GetHunger() }`);

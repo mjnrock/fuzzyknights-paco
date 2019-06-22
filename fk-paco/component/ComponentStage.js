@@ -10,7 +10,7 @@ class ComponentStage extends Component {
         });
     }
 
-    CheckPromotion() {
+    Check(entity) {
         if(Date.now() >= this._data.StartDateTime + this._data.Duration) {
             return true;
         }
@@ -41,7 +41,7 @@ class ComponentStage extends Component {
     }
 
     OnTick(entity) {
-        this.CheckPromotion();
+        this.Check(entity);
     }
 }
 

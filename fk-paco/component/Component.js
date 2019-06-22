@@ -10,6 +10,10 @@ class Component {
         this._data = data;
     }
 
+    Check(entity) {
+        // NOOP
+    }
+
     GetName() {
         // let [ key, value, _enum ] = EnumComponent._lookup(this._type);
         let [ key ] = EnumComponent._lookup(this._type);
@@ -34,7 +38,7 @@ class Component {
     }
 
     OnTick(entity) {
-        // NOOP
+        this.Check(entity);
     }
 
     Serialize() {

@@ -1,13 +1,20 @@
+import { UUID } from "./../utility/Helper.js"
+
 import EnumComponent from "./EnumComponent.js";
 
 class Component {
     constructor(flag, data = {}) {
+        this._uuid = UUID();
+
         this._type = flag;
         this._data = data;
     }
 
     GetName() {
-        return EnumComponent._lookup(this._type);
+        // let [ key, value, _enum ] = EnumComponent._lookup(this._type);
+        let [ key ] = EnumComponent._lookup(this._type);
+
+        return key;
     }
 
     GetType() {
@@ -24,6 +31,10 @@ class Component {
     }
     SetData(data) {
         this._data = data;
+    }
+
+    OnTick() {
+        // NOOP
     }
 }
 

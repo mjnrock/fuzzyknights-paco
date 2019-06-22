@@ -10,6 +10,8 @@
     <body>
         <script type="module">
             import FKP from "./fk-paco/package.js";
+
+            console.log("------------------------");
             
             const Paco = new FKP.Paco(FKP);
             Paco.Init({
@@ -19,8 +21,11 @@
             });
 
             let ent = new FKP.Entity.Entity();
-            ent.AddComponent("GROWTH");
+            ent.AddComponent(new FKP.Component.ComponentGrowth());
 
+            ent.GetComponent("GROWTH").SetStage(2);
+            console.log(ent.GetComponent("GROWTH").GetStage());
+            
             console.log(ent);
         </script>
     </body>

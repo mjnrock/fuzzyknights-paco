@@ -4,10 +4,18 @@ import EnumComponent from "./../component/EnumComponent.js";
 import Component from "../component/Component.js";
 
 class Entity {
-    constructor() {
+    constructor(components = {}) {
         this._uuid = UUID();
 
-        this._components = {};
+        if(Array.isArray(components)) {
+            this._components = {};
+
+            components.forEach(comp => {
+                this.AddComponent(comp);
+            });
+        } else {
+            this._components = components;
+        }
     }
 
     GetComponent(input) {
@@ -39,7 +47,11 @@ class Entity {
     }
 
     OnTick() {
-        // NOOP
+        for(let key in this._components) {
+            let comp = this._components[ key ];
+
+            comp.OnTick();
+        }
     }
 }
 

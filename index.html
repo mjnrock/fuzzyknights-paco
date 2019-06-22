@@ -16,17 +16,17 @@
             const Paco = new FKP.Paco(FKP);
             Paco.Init({
                 GameManager: {
-                    fps: 4
+                    fps: 25
                 }
             });
 
-            let ent = new FKP.Entity.Entity();
-            ent.AddComponent(new FKP.Component.ComponentGrowth());
+            // let ent = new FKP.Entity.Entity();
+            // ent.AddComponent(new FKP.Component.ComponentGrowth());
 
-            ent.GetComponent("GROWTH").SetStage(2);
-            console.log(ent.GetComponent("GROWTH").GetStage());
-            
-            console.log(ent);
+            // ent.GetComponent("GROWTH").SetStage(2);
+            // console.log(ent.GetComponent("GROWTH").GetStage());
+
+            // console.log(ent);
         </script>
     </body>
 </html>

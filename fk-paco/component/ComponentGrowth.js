@@ -19,6 +19,10 @@ class ComponentGrowth extends Component {
     AddStage(inc = 1) {
         return this.SetStage(this.GetStage() + inc);
     }
+
+    OnTick() {
+        //  NOOP
+    }
 }
 
 export default ComponentGrowth;

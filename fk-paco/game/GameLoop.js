@@ -1,6 +1,8 @@
 class GameLoop {
     constructor(fps = 1) {
         this.SetFPS(fps);
+        
+        this.Managers = [];
 
         this.Options = {
             Ticks: 0,
@@ -26,8 +28,18 @@ class GameLoop {
     }
     
     Start(fps = 1) {
+        console.warn("[Game Loop]: Starting...");
+
         this.SetFPS(fps);
         this.CreateLoop();
+
+        return this;
+    }
+
+    RegisterHook(fn) {
+        if(typeof fn === "function") {
+            this.Managers.push(fn);
+        }
 
         return this;
     }
@@ -35,7 +47,13 @@ class GameLoop {
     OnTick() {
         ++this.Options.Ticks;
 
-        console.info(this.Options.Ticks);
+        this.Managers.forEach(manager => {
+            manager.OnTick({
+                tick: this.Options.Ticks
+            });
+        });
+
+        // console.info(this.Options.Ticks);
     }
 }
 

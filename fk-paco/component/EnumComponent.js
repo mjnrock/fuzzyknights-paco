@@ -1,8 +1,8 @@
 import Component from "./package.js";
 
 const EnumComponent = {
-    GROWTH: 1 << 0,
-    HUNGER: 1 << 1
+    GROWTH: 1 << 1,
+    HUNGER: 1 << 2
 };
 
 EnumComponent._lookup = (input) => {
@@ -23,6 +23,8 @@ EnumComponent._getClass = (key) => {
     switch(key) {
         case "GROWTH":
             return Component.ComponentGrowth;
+        case "HUNGER":
+            return Component.ComponentHunger;
         default:
             return null;
     }

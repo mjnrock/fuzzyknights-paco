@@ -3,10 +3,10 @@ import { UUID } from "./../utility/Helper.js"
 import EnumComponent from "./EnumComponent.js";
 
 class Component {
-    constructor(flag, data = {}) {
+    constructor(type, data = {}) {
         this._uuid = UUID();
 
-        this._type = flag;
+        this._type = type;
         this._data = data;
     }
 

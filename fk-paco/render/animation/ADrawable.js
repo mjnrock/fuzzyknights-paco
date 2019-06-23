@@ -12,6 +12,10 @@ class ADrawable {
         
         this._context = this._canvas.getContext("2d");
     }
+
+    OnRender(time) {
+        
+    }
 }
 
 export default ADrawable;

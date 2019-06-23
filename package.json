@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mjnrock/fuzzyknights-paco#readme",
   "dependencies": {
+    "canvas": "^2.5.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",

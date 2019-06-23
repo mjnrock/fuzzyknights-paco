@@ -60,9 +60,12 @@ class GameLoop {
                     tick: this.Options.Ticks
                 });
             });
+
+            //! RENDER DEBUGGING
+            window.FKP.Render.Animation.Mixer.OnRender(Date.now());
         }
 
-        console.info(this.Options.Ticks);
+        // console.info(this.Options.Ticks);
     }
 }
 

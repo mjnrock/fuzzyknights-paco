@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const mssql = require("mssql");
+const Canvas = require("canvas");
 
 const expressWS = require("express-ws")(express());
 const app = expressWS.app;
@@ -26,6 +27,32 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
     res.sendfile("index.html");
 });
+
+app.get("/image/:id", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.set("Content-Type", "Application/json");
+
+    let image = new Canvas.Image(),
+        id = +req.params.id;
+        
+    image.onload = (e) => {
+        let canvas = Canvas.createCanvas(image.width, image.height),
+            ctx = canvas.getContext("2d");
+
+        ctx.drawImage(image, 0, 0);
+
+        res.send(JSON.stringify({
+            base64: canvas.toDataURL("image/png")
+        }));
+    };
+
+    if(id === 1) {
+        image.src = "./fk-paco/assets/images/idle-body-raccoon.png";   
+    } else if(id === 2) {
+        image.src = "./fk-paco/assets/images/idle-eyes.png";
+    }
+});
+
 
 app.get("/validate", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");

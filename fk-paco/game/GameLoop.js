@@ -7,8 +7,23 @@ class GameLoop {
         this.Options = {
             Ticks: 0,
             Loop: null,
-            IsPaused: false
+            IsPaused: false,
+            HasFocus: true
         };
+
+        //! Use for debugging only, pretty fucking pointless on a phone if you have to keep the app open and focused to progress
+        if(window) {
+            window.onfocus = (e) => {
+                this.Options.HasFocus = true;
+    
+                console.log("FOCUS");
+            }
+            window.onblur = (e) => {
+                this.Options.HasFocus = false;
+    
+                console.log("BLUR");
+            }
+        }
     }
 
     CreateLoop() {
@@ -37,7 +52,7 @@ class GameLoop {
     }
     
     OnTick() {
-        if(!this.Options.IsPaused) {
+        if(!this.Options.IsPaused && this.Options.HasFocus) {
             ++this.Options.Ticks;
     
             this.Managers.forEach(manager => {

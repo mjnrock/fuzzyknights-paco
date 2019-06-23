@@ -44,6 +44,8 @@ class ComponentHunger extends Component {
             this.AddHunger(inc);
             this._data.LastUpdate = Date.now();
         }
+
+        console.log(`[HUNGER]: ${ this.GetHunger() }`);
     }
 }
 

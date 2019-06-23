@@ -1,5 +1,4 @@
 import { UUID } from "./../utility/Helper.js";
-import EnumComponent from "../component/EnumComponent.js";
 import Bitwise from "../utility/Bitwise.js";
 
 class Watcher {
@@ -10,15 +9,15 @@ class Watcher {
         this._handlers = [];
 
         this.Register(
-            (e, _) => {
-                if(Bitwise.Has(_.HUNGER.GetMask(), _.HUNGER.GetFlag("STARVE"))) {
+            (e, _, $) => {
+                if($("HUNGER.STARVE")) {
                     console.log("IS STARVING");
                 }
-                if(Bitwise.Has(_.HUNGER.GetMask(), _.HUNGER.GetFlag("WEAK"))) {
+                if($("HUNGER.WEAK", "STAGE.PROMOTE")) {
                     console.log("WEAK");
                 }
-
-                if(Bitwise.Has(_.STAGE.GetMask(), _.STAGE.GetFlag("PROMOTE"))) {
+                
+                if($("STAGE.PROMOTE")) {
                     _.STAGE.Promote();
                 }
             }
@@ -65,7 +64,19 @@ class Watcher {
         for(let i in this._handlers) {
             let handler = this._handlers[ i ];
 
-            handler(this._entity, this._entity._components);
+            handler(this._entity, this._entity._components, (...enums) => {
+                let bools = true;
+                
+                enums.forEach(e => {
+                    let [ comp, key ] = e.split(".");
+                    comp = this._entity._components[ comp.toUpperCase() ];
+
+                    bools = bools && 
+                        Bitwise.Has(comp.GetMask(), comp.GetFlag(key));
+                });
+
+                return bools;
+            });
         }
     }
 }

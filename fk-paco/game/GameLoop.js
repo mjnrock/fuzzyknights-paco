@@ -62,7 +62,7 @@ class GameLoop {
             });
         }
 
-        // console.info(this.Options.Ticks);
+        console.info(this.Options.Ticks);
     }
 }
 

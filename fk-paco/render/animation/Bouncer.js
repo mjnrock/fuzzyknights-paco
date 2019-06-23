@@ -1,6 +1,6 @@
-import Canvased from "./Canvased.js";
+import ADrawable from "./ADrawable.js";
 
-class Bouncer extends Canvased {
+class Bouncer extends ADrawable {
     constructor(...tracks) {
         super();
 

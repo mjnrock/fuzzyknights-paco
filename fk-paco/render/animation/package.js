@@ -1,10 +1,11 @@
-import Canvased from "./Canvased.js";
+import ADrawable from "./ADrawable.js";
 import Track from "./Track.js";
 import Bouncer from "./Bouncer.js";
 import Mixer from "./Mixer.js";
 
 export default {
-    Canvased,
+    ADrawable,
+    
     Track,
     Bouncer,
     Mixer

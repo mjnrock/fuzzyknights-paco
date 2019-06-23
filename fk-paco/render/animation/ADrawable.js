@@ -1,6 +1,6 @@
-import { UUID } from "./../../utility/Helper.js";
+import { UUID } from "../../utility/Helper.js";
 
-class Canvased {
+class ADrawable {
     constructor() {
         this._uuid = UUID();
 
@@ -14,4 +14,4 @@ class Canvased {
     }
 }
 
-export default Canvased;
+export default ADrawable;

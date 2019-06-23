@@ -1,6 +1,6 @@
-import Canvased from "./Canvased.js";
+import ADrawable from "./ADrawable.js";
 
-class Mixer extends Canvased {
+class Mixer extends ADrawable {
     constructor(...bouncers) {
         super();
 

@@ -20,8 +20,6 @@ class ComponentHunger extends Component {
 
         this.SmartFlag("STARVE", Hunger >= MaxHunger);
         this.SmartFlag("WEAK", Hunger >= MaxHunger * 0.75);
-
-        // console.log(this.MaskToString());
     }
 
     GetHunger() {
@@ -46,12 +44,6 @@ class ComponentHunger extends Component {
             this.AddHunger(inc);
             this._data.LastUpdate = Date.now();
         }
-
-        if(this.GetHunger() >= 90) {
-            this.SetHunger(0);
-        }
-
-        console.log(`[Hunger]: ${ this.GetHunger() }`);
     }
 }
 

@@ -13,14 +13,7 @@ class ComponentStage extends Component {
     }
 
     Check(entity) {
-        if(Date.now() >= this._data.StartDateTime + this._data.Duration) {
-            this.AddMask(this.GetFlag("PROMOTE"));
-        } else {
-            this.RemoveMask(this.GetFlag("PROMOTE"));
-        }
         this.SmartFlag("PROMOTE", Date.now() >= this._data.StartDateTime + this._data.Duration);
-
-        // console.log(this.MaskToString());
     }
 
     Promote() {

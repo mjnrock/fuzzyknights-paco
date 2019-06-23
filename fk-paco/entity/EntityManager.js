@@ -1,5 +1,6 @@
 import Manager from "./../core/Manager.js";
 import Entity from "./Entity.js";
+import Watcher from "./Watcher.js";
 
 class EntityManager extends Manager {
     constructor(fkp) {
@@ -31,7 +32,7 @@ class EntityManager extends Manager {
     }
     Add(entity) {
         if(entity instanceof Entity) {
-            this._entities[ entity._uuid ] = entity;
+            this._entities[ entity._uuid ] = new Watcher(entity);
         }
 
         return this;
@@ -56,9 +57,10 @@ class EntityManager extends Manager {
 
     OnTick() {
         for(let uuid in this._entities) {
-            let entity = this._entities[ uuid ];
+            let watcher = this._entities[ uuid ];
 
-            entity.OnTick();
+            watcher.GetEntity().OnTick();
+            watcher.OnTick();
         }
     }
 }

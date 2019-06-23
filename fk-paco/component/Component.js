@@ -74,6 +74,9 @@ class Component {
 
         return this;
     }
+    HasMask(mask) {
+        return Bitwise.Has(this._mask, mask);
+    }
 
     MaskToString() {
         let _enum = Object.entries(this._flags),

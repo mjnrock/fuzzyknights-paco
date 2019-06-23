@@ -78,6 +78,18 @@ class Component {
         return Bitwise.Has(this._mask, mask);
     }
 
+    SmartFlag(key, conditional) {
+        let mask = this.GetFlag(key);
+
+        if(conditional === true || (typeof conditional === "function" && conditional(this._mask, mask))) {
+            this.AddMask(mask);
+        } else {
+            this.RemoveMask(mask);
+        }
+
+        return this;
+    }
+
     MaskToString() {
         let _enum = Object.entries(this._flags),
             keys = [];

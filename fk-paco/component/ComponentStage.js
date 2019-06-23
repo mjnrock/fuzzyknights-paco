@@ -18,6 +18,7 @@ class ComponentStage extends Component {
         } else {
             this.RemoveMask(this.GetFlag("PROMOTE"));
         }
+        this.SmartFlag("PROMOTE", Date.now() >= this._data.StartDateTime + this._data.Duration);
 
         // console.log(this.MaskToString());
     }

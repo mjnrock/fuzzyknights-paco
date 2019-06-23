@@ -37,13 +37,15 @@ class GameLoop {
     }
     
     OnTick() {
-        ++this.Options.Ticks;
-
-        this.Managers.forEach(manager => {
-            manager.OnTick({
-                tick: this.Options.Ticks
+        if(!this.Options.IsPaused) {
+            ++this.Options.Ticks;
+    
+            this.Managers.forEach(manager => {
+                manager.OnTick({
+                    tick: this.Options.Ticks
+                });
             });
-        });
+        }
 
         // console.info(this.Options.Ticks);
     }

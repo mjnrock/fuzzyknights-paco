@@ -7,24 +7,19 @@ class ComponentHunger extends Component {
             Hunger: 0,
             MaxHunger: 100,
             LastUpdate: Date.now(),
-            Duration: 250
+            Duration: 100
         }, {
             STARVE: 1 << 1,
-            WEAK: 1 << 2
+            WEAK: 1 << 2,
+            FULL: 1 << 3
         });
     }
 
     Check(entity) {
         let { Hunger, MaxHunger } = this._data;
 
-        if(Hunger >= MaxHunger) {
-            this.AddMask(this.GetFlag("STARVE"));
-        } else if(Hunger >= MaxHunger * 0.75) {
-            this.AddMask(this.GetFlag("WEAK"));
-        } else {
-            this.RemoveMask(this.GetFlag("STARVE"));
-            this.RemoveMask(this.GetFlag("WEAK"));
-        }
+        this.SmartFlag("STARVE", Hunger >= MaxHunger);
+        this.SmartFlag("WEAK", Hunger >= MaxHunger * 0.75);
 
         // console.log(this.MaskToString());
     }
@@ -50,6 +45,10 @@ class ComponentHunger extends Component {
                 
             this.AddHunger(inc);
             this._data.LastUpdate = Date.now();
+        }
+
+        if(this.GetHunger() >= 90) {
+            this.SetHunger(0);
         }
 
         console.log(`[Hunger]: ${ this.GetHunger() }`);

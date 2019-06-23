@@ -44,6 +44,10 @@ class Track {
 
         return this;
     }
+
+    OnRender(time) {
+        return this.Next(time);
+    }
 }
 
 export default Track;

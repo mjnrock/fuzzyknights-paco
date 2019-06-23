@@ -1,16 +1,24 @@
-class Mixer {
+import Canvased from "./Canvased.js";
+
+class Mixer extends Canvased {
     constructor(...bouncers) {
+        super();
+
         this._bouncers = bouncers;
-
-        this._canvas = document.createElement("canvas");
-
-        this._canvas.id = "mixer";
-        this._canvas.width = 512;
-        this._canvas.height = 512;
         
-        this._context = this._canvas.getContext("2d");
-
         this._isPaused = true;
+    }
+
+    Play() {
+        this._bouncers.forEach(b => b.Reset());
+        this._isPaused = false;
+
+        return this;
+    }
+    Pause() {
+        this._isPaused = true;
+
+        return this;
     }
 
     GetBouncer(index) {

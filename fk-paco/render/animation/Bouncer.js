@@ -1,14 +1,10 @@
-class Bouncer {
+import Canvased from "./Canvased.js";
+
+class Bouncer extends Canvased {
     constructor(...tracks) {
+        super();
+
         this._tracks = tracks;
-
-        this._canvas = document.createElement("canvas");
-
-        this._canvas.id = "mixer";
-        this._canvas.width = 512;
-        this._canvas.height = 512;
-        
-        this._context = this._canvas.getContext("2d");
     }
 
     AddTrack(track) {
@@ -17,23 +13,37 @@ class Bouncer {
         return this;
     }
 
+    Reset() {
+        this._tracks.forEach(t => t.Reset());
+
+        return this;
+    }
+
     Bounce(time) {
-        this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+        let isDirty = false;
+        this._tracks.forEach((track) => {
+            let next = track.Next(time);
 
-        for(let i in this._tracks) {
-            let track = this._tracks[ i ];
+            if(!isDirty && !!next) {
+                isDirty = true;
+            }
+        });
 
-            //TODO: Optimize this somehow by doing something with the true|false that .Next() returns (if dirty or not)
-            track.Next(time);
-
-            this._context.drawImage(...track.Get(), 0, 0, 512, 512);
+        if(isDirty) {
+            this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    
+            for(let i in this._tracks) {
+                let track = this._tracks[ i ];
+    
+                this._context.drawImage(...track.Get(), 0, 0, 512, 512);
+            }
         }
+
+        return isDirty;
     }
 
     OnRender(time) {
-        this.Bounce(time);
-
-        return [ this._canvas, this._context ];
+        return this.Bounce(time);
     }
 }
 

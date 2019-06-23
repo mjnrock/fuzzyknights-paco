@@ -4,7 +4,7 @@ class Paco {
 
         //? DEBUG
         window.FKP = this.FKP;
-        this.DEBUG_duration = 125;
+        this.DEBUG_duration = 500;
     }
 
     Init(obj) {
@@ -55,7 +55,7 @@ class Paco {
                     };
                     image.src = data.base64;
 
-                    this.FKP.Render.Animation.Mixer._isPaused = false;
+                    this.FKP.Render.Animation.Mixer.Play();
                 });
 
         return this;

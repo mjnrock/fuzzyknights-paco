@@ -19,7 +19,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-ws": "^4.0.0",
     "mssql": "^5.1.0",
     "uuid": "^3.3.2",
